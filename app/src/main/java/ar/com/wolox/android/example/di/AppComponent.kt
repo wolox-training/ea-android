@@ -12,11 +12,15 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
+import ar.com.wolox.android.login.LoginModule
 
 @ApplicationScope
-@Component(dependencies = [NetworkingComponent::class],
-        modules = [AndroidSupportInjectionModule::class, DefaultModule::class, ContextModule::class,
-            ExampleModule::class, ViewPagerActivityModule::class])
+@Component(
+    dependencies = [NetworkingComponent::class],
+    modules = [AndroidSupportInjectionModule::class, DefaultModule::class, ContextModule::class,
+        ExampleModule::class, LoginModule::class, ViewPagerActivityModule::class]
+)
+
 interface AppComponent : AndroidInjector<BootstrapApplication> {
 
     @Component.Builder

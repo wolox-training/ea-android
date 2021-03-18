@@ -46,4 +46,19 @@
     <dimen name="font_huge">24sp</dimen>
 
     <!-- Add your custom dimens here -->
+    <dimen name="wolox_tiny_spacing">8dp</dimen>
+    <dimen name="wolox_small_spacing">24dp</dimen>
+    <dimen name="wolox_medium_spacing">48dp</dimen>
+    <dimen name="wolox_big_spacing">56dp</dimen>
+    <dimen name="wolox_huge_spacing">88dp</dimen>
+    <dimen name="wolox_vertical_spacing_logo">148dp</dimen>
+    <dimen name="wolox_login_cover_dimen">200dp</dimen>
+
+    <dimen name="wolox_main_title">155.56sp</dimen>
+    <dimen name="wolox_title">104.44sp</dimen>
+    <dimen name="wolox_description">97.78sp</dimen>
+    <dimen name="wolox_body">91.11sp</dimen>
+    <dimen name="wolox_time_description">77.78sp</dimen>
+    <dimen name="wolox_location_description">68.89sp</dimen>
+
 </resources>
