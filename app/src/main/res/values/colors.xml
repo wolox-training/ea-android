@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Add your application custom colors here -->
+    <color name="colorWoloxLightBlue">#3bafda</color>
+    <color name="colorWoloxDarkGrey">#4d4d4d</color>
+    <color name="colorWoloxLightGrey">#bbbcbe</color>
+
     <!-- Base application colors -->
     <color name="colorPrimary">#1D9BD7</color>
     <color name="colorPrimaryDark">#0960B7</color>
