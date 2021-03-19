@@ -11,7 +11,7 @@
 
         <ImageView
             android:id="@+id/loginCoverImageView"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/wolox_login_cover_dimen"
             android:background="@drawable/login_cover"
             app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +21,7 @@
 
         <ImageView
             android:id="@+id/loginGradientImageView"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/wolox_login_cover_dimen"
             android:alpha=".6"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,10 +32,9 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_height="121dp"
-            android:layout_marginTop="148dp"
-            android:contentDescription="TODO"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/wolox_vertical_spacing_logo"
             android:src="@drawable/wolox_logo_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -44,11 +43,10 @@
 
         <EditText
             android:id="@+id/emailEditText"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/wolox_big_spacing"
             android:layout_marginStart="@dimen/spacing_large"
             android:layout_marginEnd="@dimen/spacing_large"
-            android:ems="10"
             android:hint="@string/email_hint"
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,11 +56,10 @@
 
         <EditText
             android:id="@+id/passwordEditText"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/wolox_big_spacing"
             android:layout_marginStart="@dimen/spacing_large"
             android:layout_marginEnd="@dimen/spacing_large"
-            android:ems="10"
             android:hint="@string/password_hint"
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +69,7 @@
 
         <Button
             android:id="@+id/logInButton"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/wolox_big_spacing"
             android:layout_marginStart="@dimen/spacing_large"
             android:layout_marginEnd="@dimen/spacing_large"
@@ -85,7 +82,7 @@
 
         <Button
             android:id="@+id/signUpButton"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/wolox_big_spacing"
             android:layout_marginStart="@dimen/spacing_large"
             android:layout_marginEnd="@dimen/spacing_large"
@@ -100,7 +97,7 @@
         <TextView
             android:id="@+id/termsAndConditionTextView"
             android:layout_width="wrap_content"
-            android:layout_height="19dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/spacing_large"
             android:text="@string/terms_and_conditions_text_view"
             app:layout_constraintBottom_toBottomOf="parent"
