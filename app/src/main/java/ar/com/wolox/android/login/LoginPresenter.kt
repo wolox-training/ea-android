@@ -7,20 +7,19 @@ import javax.inject.Inject
 
 class LoginPresenter @Inject constructor(private val userSession: UserSession) : BasePresenter<LoginView>() {
 
-    private fun isEmailValid(email: String): Boolean {
-
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-
     fun onLogInButtonClick(email: String, password: String) {
 
         val totalErrors: MutableList<Errors> = ArrayList()
 
-        if (email.isEmpty()) totalErrors.add(Errors.EMPTY_EMAIL)
+        if (email.isEmpty()) {
+            totalErrors.add(Errors.EMPTY_EMAIL)
+        } else if (!isEmailValid(email)) {
+            totalErrors.add(Errors.INVALID_EMAIL)
+        }
 
-        else if (!isEmailValid(email)) totalErrors.add(Errors.INVALID_EMAIL)
-
-        if (password.isEmpty()) totalErrors.add(Errors.EMPTY_PASSWORD)
+        if (password.isEmpty()) {
+            totalErrors.add(Errors.EMPTY_PASSWORD)
+        }
 
         if (totalErrors.isEmpty()) {
 
@@ -33,5 +32,10 @@ class LoginPresenter @Inject constructor(private val userSession: UserSession) :
                 actualError.callAction(view!!)
             }
         }
+    }
+
+    private fun isEmailValid(email: String): Boolean {
+
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }
