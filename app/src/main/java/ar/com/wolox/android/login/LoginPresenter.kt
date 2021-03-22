@@ -8,18 +8,8 @@ import javax.inject.Inject
 class LoginPresenter @Inject constructor(private val userSession: UserSession) : BasePresenter<LoginView>() {
 
     private fun isEmailValid(email: String): Boolean {
-        val parts = email.split("@")
-        if (parts.size != 2) {
-            return false
-        }
-        if (parts[0].isEmpty()) {
-            return false
-        }
-        val domain = parts[1].split(".")
-        if (domain.size < 2) {
-            return false
-        }
-        return true
+
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     fun onLogInButtonClick(email: String, password: String) {
@@ -33,10 +23,13 @@ class LoginPresenter @Inject constructor(private val userSession: UserSession) :
         if (password.isEmpty()) totalErrors.add(Errors.EMPTY_PASSWORD)
 
         if (totalErrors.isEmpty()) {
+
             userSession.email = email
             userSession.password = password
         } else {
+
             for (actualError in totalErrors) {
+
                 actualError.callAction(view!!)
             }
         }

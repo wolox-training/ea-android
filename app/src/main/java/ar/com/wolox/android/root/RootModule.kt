@@ -6,5 +6,5 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class RootModule {
     @ContributesAndroidInjector
-    abstract fun rootActivity(): RootActivity?
+    internal abstract fun rootActivity(): RootActivity?
 }
