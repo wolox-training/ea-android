@@ -1,3 +1,10 @@
 package ar.com.wolox.android.login
 
-interface LoginView
+interface LoginView {
+
+    fun showEmptyPasswordError()
+
+    fun showEmptyEmailError()
+
+    fun showInvalidEmailError()
+}

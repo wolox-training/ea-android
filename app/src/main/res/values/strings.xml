@@ -21,6 +21,10 @@
     <string name="terms_and_conditions_text_view">By joining you agree to our <u>Terms &amp; Conditions</u></string>
     <string name="email_hint">E-mail</string>
     <string name="password_hint">Password</string>
-
+    <string name="blank_error">Complete all fields</string>
+    <string name="invalid_format_error">Invalid e-mail format</string>
+    <string name="empty_email_error">You must enter your email</string>
+    <string name="empty_password_error">You must enter your password</string>
+    <string name="invalid_email_error">Invalid e-mail format</string>
 
 </resources>
