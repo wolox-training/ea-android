@@ -2,10 +2,8 @@ package ar.com.wolox.android.root
 
 import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.ActivityBaseBinding
-import ar.com.wolox.android.example.utils.UserSession
 import ar.com.wolox.android.login.LoginActivity
 import ar.com.wolox.wolmo.core.activity.WolmoActivity
-import javax.inject.Inject
 
 class RootActivity : WolmoActivity<ActivityBaseBinding>() {
 //    @Inject

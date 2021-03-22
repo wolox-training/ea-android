@@ -1,7 +1,7 @@
 package ar.com.wolox.android.login
 
+import ar.com.wolox.android.example.utils.UserSession
 import ar.com.wolox.android.login.utils.Errors
-import ar.com.wolox.android.login.utils.UserSession
 import ar.com.wolox.wolmo.core.presenter.BasePresenter
 import javax.inject.Inject
 
