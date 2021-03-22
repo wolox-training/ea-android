@@ -1,21 +1,24 @@
 package ar.com.wolox.android.homepage
 
 import android.content.Context
+import android.content.Intent
 import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.ActivityBaseBinding
 import ar.com.wolox.wolmo.core.activity.WolmoActivity
-import ar.com.wolox.wolmo.core.util.jumpTo
 
 class HomeActivity : WolmoActivity<ActivityBaseBinding>() {
 
-    override fun layout() = R.layout.activity_base
+    override fun layout() = R.layout.home_activity
 
     override fun init() {
     }
 
     companion object {
 
-        fun start(context: Context) = context.jumpTo(
-            HomeActivity::class.java)
+        fun start(context: Context) {
+            with(Intent(context, HomeActivity::class.java)) {
+                context.startActivity(this)
+            }
+        }
     }
 }

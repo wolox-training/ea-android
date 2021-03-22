@@ -1,21 +1,23 @@
 package ar.com.wolox.android.signup
 
 import android.content.Context
+import android.content.Intent
 import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.ActivityBaseBinding
 import ar.com.wolox.wolmo.core.activity.WolmoActivity
-import ar.com.wolox.wolmo.core.util.jumpTo
 
 class SignupActivity : WolmoActivity<ActivityBaseBinding>() {
 
-    override fun layout() = R.layout.activity_base
+    override fun layout() = R.layout.sign_up_activity
 
     override fun init() {
     }
 
     companion object {
-
-        fun start(context: Context) = context.jumpTo(
-            SignupActivity::class.java)
+        fun start(context: Context) {
+            with(Intent(context, SignupActivity::class.java)) {
+                context.startActivity(this)
+            }
+        }
     }
 }

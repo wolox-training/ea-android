@@ -7,10 +7,7 @@ import javax.inject.Inject
 
 class LoginPresenter @Inject constructor(private val userSession: UserSession) : BasePresenter<LoginView>() {
 
-    private fun isEmailValid(email: String): Boolean {
-
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
+    private fun isEmailValid(email: String): Boolean = android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
 
     fun onLogInButtonClick(email: String, password: String) {
 
@@ -26,6 +23,7 @@ class LoginPresenter @Inject constructor(private val userSession: UserSession) :
 
             userSession.email = email
             userSession.password = password
+            view?.goToHome()
         } else {
 
             for (actualError in totalErrors) {
@@ -33,5 +31,14 @@ class LoginPresenter @Inject constructor(private val userSession: UserSession) :
                 actualError.callAction(view!!)
             }
         }
+    }
+
+    fun onTermsAndConditionsTextClick() = view?.openBrowser(WOLOX_URL)
+
+    fun onSignUpButtonClick() = view?.goToSignUp()
+
+    companion object {
+
+        private const val WOLOX_URL = "www.wolox.com.ar"
     }
 }

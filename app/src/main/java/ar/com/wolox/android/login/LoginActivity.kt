@@ -1,10 +1,10 @@
 package ar.com.wolox.android.login
 
 import android.content.Context
+import android.content.Intent
 import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.ActivityBaseBinding
 import ar.com.wolox.wolmo.core.activity.WolmoActivity
-import ar.com.wolox.wolmo.core.util.jumpTo
 
 class LoginActivity : WolmoActivity<ActivityBaseBinding>() {
 
@@ -14,8 +14,10 @@ class LoginActivity : WolmoActivity<ActivityBaseBinding>() {
     }
 
     companion object {
-
-        fun start(context: Context) = context.jumpTo(
-            LoginActivity::class.java)
+        fun start(context: Context) {
+            with(Intent(context, LoginActivity::class.java)) {
+                context.startActivity(this)
+            }
+        }
     }
 }

@@ -2,7 +2,10 @@ package ar.com.wolox.android.login
 
 import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.LoginFragmentBinding
+import ar.com.wolox.android.homepage.HomeActivity
+import ar.com.wolox.android.signup.SignupActivity
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
+import ar.com.wolox.wolmo.core.util.openBrowser
 
 class LoginFragment : WolmoFragment<LoginFragmentBinding, LoginPresenter>(), LoginView {
 
@@ -13,11 +16,17 @@ class LoginFragment : WolmoFragment<LoginFragmentBinding, LoginPresenter>(), Log
 
     override fun setListeners() {
         with(binding) {
-            logInButton.setOnClickListener {
-                    presenter.onLogInButtonClick(emailEditText.text.toString(), passwordEditText.text.toString())
-                }
-            }
+            logInButton.setOnClickListener { presenter.onLogInButtonClick(emailEditText.text.toString(), passwordEditText.text.toString()) }
+            signUpButton.setOnClickListener { presenter.onSignUpButtonClick() }
+            termsAndConditionTextView.setOnClickListener { presenter.onTermsAndConditionsTextClick() }
         }
+    }
+
+    override fun openBrowser(url: String) = requireContext().openBrowser(url)
+
+    override fun goToSignUp() = SignupActivity.start(requireContext())
+
+    override fun goToHome() = HomeActivity.start(requireContext())
 
     override fun showEmptyEmailError() {
         with(binding) {
