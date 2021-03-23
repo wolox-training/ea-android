@@ -1,9 +1,9 @@
-package ar.com.wolox.android.login
+package ar.com.wolox.android.features.auth.login
 
 import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.LoginFragmentBinding
-import ar.com.wolox.android.homepage.HomeActivity
-import ar.com.wolox.android.signup.SignupActivity
+import ar.com.wolox.android.features.homepage.HomeActivity
+import ar.com.wolox.android.features.auth.signup.SignupActivity
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import ar.com.wolox.wolmo.core.util.openBrowser
 

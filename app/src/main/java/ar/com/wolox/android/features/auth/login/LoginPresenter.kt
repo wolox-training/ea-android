@@ -1,8 +1,8 @@
-package ar.com.wolox.android.login
+package ar.com.wolox.android.features.auth.login
 
-import ar.com.wolox.android.example.utils.UserSession
+import ar.com.wolox.android.utils.UserSession
 import ar.com.wolox.android.extfunctions.isValidEmail
-import ar.com.wolox.android.login.utils.Errors
+import ar.com.wolox.android.utils.Errors
 import ar.com.wolox.wolmo.core.presenter.BasePresenter
 import javax.inject.Inject
 

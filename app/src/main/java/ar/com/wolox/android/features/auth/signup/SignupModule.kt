@@ -1,4 +1,4 @@
-package ar.com.wolox.android.signup
+package ar.com.wolox.android.features.auth.signup
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

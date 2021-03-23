@@ -1,6 +1,6 @@
 package ar.com.wolox.android.example.ui.example
 
-import ar.com.wolox.android.example.utils.UserSession
+import ar.com.wolox.android.utils.UserSession
 import ar.com.wolox.wolmo.core.tests.WolmoPresenterTest
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify

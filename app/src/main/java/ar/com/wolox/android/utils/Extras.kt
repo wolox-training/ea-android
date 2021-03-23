@@ -1,4 +1,4 @@
-package ar.com.wolox.android.login.utils
+package ar.com.wolox.android.utils
 
 object Extras {
     object UserLoginEmailPassword {

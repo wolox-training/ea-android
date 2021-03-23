@@ -1,4 +1,4 @@
-package ar.com.wolox.android.example.utils
+package ar.com.wolox.android.utils
 
 import ar.com.wolox.wolmo.core.di.scopes.ApplicationScope
 import ar.com.wolox.wolmo.core.util.SharedPreferencesManager
@@ -12,29 +12,29 @@ class UserSession @Inject constructor(private val sharedPreferencesManager: Shar
     // application, but we should add a check in case Android decides to kill the application
     // and return to a state where this isn't initialized.
     var username: String? = null
-        get() = field ?: sharedPreferencesManager[Extras.UserLogin.USERNAME, null].also {
+        get() = field ?: sharedPreferencesManager[ar.com.wolox.android.example.utils.Extras.UserLogin.USERNAME, null].also {
             field = it
         }
         set(username) {
             field = username
-            sharedPreferencesManager.store(Extras.UserLogin.USERNAME, username)
+            sharedPreferencesManager.store(ar.com.wolox.android.example.utils.Extras.UserLogin.USERNAME, username)
         }
 
     var email: String? = null
-        get() = field ?: sharedPreferencesManager[ar.com.wolox.android.login.utils.Extras.UserLoginEmailPassword.EMAIL, null].also {
+        get() = field ?: sharedPreferencesManager[Extras.UserLoginEmailPassword.EMAIL, null].also {
             field = it
         }
         set(email) {
             field = email
-            sharedPreferencesManager.store(ar.com.wolox.android.login.utils.Extras.UserLoginEmailPassword.EMAIL, email)
+            sharedPreferencesManager.store(Extras.UserLoginEmailPassword.EMAIL, email)
         }
 
     var password: String? = null
-        get() = field ?: sharedPreferencesManager[ar.com.wolox.android.login.utils.Extras.UserLoginEmailPassword.PASSWORD, null].also {
+        get() = field ?: sharedPreferencesManager[Extras.UserLoginEmailPassword.PASSWORD, null].also {
             field = it
         }
         set(password) {
             field = password
-            sharedPreferencesManager.store(ar.com.wolox.android.login.utils.Extras.UserLoginEmailPassword.PASSWORD, password)
+            sharedPreferencesManager.store(Extras.UserLoginEmailPassword.PASSWORD, password)
         }
 }

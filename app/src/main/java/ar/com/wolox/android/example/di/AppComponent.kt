@@ -4,7 +4,7 @@ import android.app.Application
 import ar.com.wolox.android.example.BootstrapApplication
 import ar.com.wolox.android.example.ui.example.ExampleModule
 import ar.com.wolox.android.example.ui.viewpager.ViewPagerActivityModule
-import ar.com.wolox.android.homepage.HomeModule
+import ar.com.wolox.android.features.homepage.HomeModule
 import ar.com.wolox.wolmo.core.di.modules.ContextModule
 import ar.com.wolox.wolmo.core.di.modules.DefaultModule
 import ar.com.wolox.wolmo.core.di.scopes.ApplicationScope
@@ -13,9 +13,9 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
-import ar.com.wolox.android.login.LoginModule
-import ar.com.wolox.android.root.RootModule
-import ar.com.wolox.android.signup.SignupModule
+import ar.com.wolox.android.features.auth.login.LoginModule
+import ar.com.wolox.android.features.root.RootModule
+import ar.com.wolox.android.features.auth.signup.SignupModule
 
 @ApplicationScope
 @Component(
