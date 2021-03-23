@@ -1,13 +1,12 @@
 package ar.com.wolox.android.login
 
 import ar.com.wolox.android.example.utils.UserSession
+import ar.com.wolox.android.extfunctions.isValidEmail
 import ar.com.wolox.android.login.utils.Errors
 import ar.com.wolox.wolmo.core.presenter.BasePresenter
 import javax.inject.Inject
 
 class LoginPresenter @Inject constructor(private val userSession: UserSession) : BasePresenter<LoginView>() {
-
-    private fun isEmailValid(email: String): Boolean = android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
 
     fun onLogInButtonClick(email: String, password: String) {
 
@@ -15,7 +14,7 @@ class LoginPresenter @Inject constructor(private val userSession: UserSession) :
 
         if (email.isEmpty()) totalErrors.add(Errors.EMPTY_EMAIL)
 
-        else if (!isEmailValid(email)) totalErrors.add(Errors.INVALID_EMAIL)
+        else if (!email.isValidEmail()) totalErrors.add(Errors.INVALID_EMAIL)
 
         if (password.isEmpty()) totalErrors.add(Errors.EMPTY_PASSWORD)
 
