@@ -20,7 +20,7 @@ class RootActivity : WolmoActivity<ActivityBaseBinding>() {
     }
 
     private fun validateUser() {
-        if (userSession.email.isNullOrEmpty() or userSession.password.isNullOrEmpty()) {
+        if (userSession.email.isNullOrEmpty() && userSession.password.isNullOrEmpty()) {
             LoginActivity.start(this)
         } else {
             HomeActivity.start(this)
