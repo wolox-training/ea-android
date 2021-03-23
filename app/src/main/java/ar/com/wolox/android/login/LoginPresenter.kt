@@ -12,21 +12,22 @@ class LoginPresenter @Inject constructor(private val userSession: UserSession) :
 
         val totalErrors: MutableList<Errors> = ArrayList()
 
-        if (email.isEmpty()) totalErrors.add(Errors.EMPTY_EMAIL)
+        if (email.isEmpty()) {
+            totalErrors.add(Errors.EMPTY_EMAIL)
+        } else if (!email.isValidEmail()) {
+            totalErrors.add(Errors.INVALID_EMAIL)
+        }
 
-        else if (!email.isValidEmail()) totalErrors.add(Errors.INVALID_EMAIL)
-
-        if (password.isEmpty()) totalErrors.add(Errors.EMPTY_PASSWORD)
+        if (password.isEmpty()) {
+            totalErrors.add(Errors.EMPTY_PASSWORD)
+        }
 
         if (totalErrors.isEmpty()) {
-
             userSession.email = email
             userSession.password = password
             view?.goToHome()
         } else {
-
             for (actualError in totalErrors) {
-
                 actualError.callAction(view!!)
             }
         }
