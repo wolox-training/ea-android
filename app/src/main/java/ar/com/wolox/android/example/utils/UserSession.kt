@@ -19,4 +19,22 @@ class UserSession @Inject constructor(private val sharedPreferencesManager: Shar
             field = username
             sharedPreferencesManager.store(Extras.UserLogin.USERNAME, username)
         }
+
+    var email: String? = null
+        get() = field ?: sharedPreferencesManager[ar.com.wolox.android.login.utils.Extras.UserLoginEmailPassword.EMAIL, null].also {
+            field = it
+        }
+        set(email) {
+            field = email
+            sharedPreferencesManager.store(ar.com.wolox.android.login.utils.Extras.UserLoginEmailPassword.EMAIL, email)
+        }
+
+    var password: String? = null
+        get() = field ?: sharedPreferencesManager[ar.com.wolox.android.login.utils.Extras.UserLoginEmailPassword.PASSWORD, null].also {
+            field = it
+        }
+        set(password) {
+            field = password
+            sharedPreferencesManager.store(ar.com.wolox.android.login.utils.Extras.UserLoginEmailPassword.PASSWORD, password)
+        }
 }
