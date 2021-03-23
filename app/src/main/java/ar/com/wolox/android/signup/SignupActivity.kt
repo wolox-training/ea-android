@@ -1,4 +1,4 @@
-package ar.com.wolox.android.login
+package ar.com.wolox.android.signup
 
 import android.content.Context
 import android.content.Intent
@@ -6,16 +6,16 @@ import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.ActivityBaseBinding
 import ar.com.wolox.wolmo.core.activity.WolmoActivity
 
-class LoginActivity : WolmoActivity<ActivityBaseBinding>() {
+class SignupActivity : WolmoActivity<ActivityBaseBinding>() {
 
-    override fun layout() = R.layout.activity_base
+    override fun layout() = R.layout.sign_up_activity
+
     override fun init() {
-        replaceFragment(binding.activityBaseContent.id, LoginFragment.newInstance())
     }
 
     companion object {
         fun start(context: Context) {
-            with(Intent(context, LoginActivity::class.java)) {
+            with(Intent(context, SignupActivity::class.java)) {
                 context.startActivity(this)
             }
         }

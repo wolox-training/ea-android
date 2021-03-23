@@ -24,6 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".login.LoginActivity"/>
+        <activity android:name=".homepage.HomeActivity"/>
+        <activity android:name=".signup.SignupActivity"/>
         <activity android:name=".example.ui.example.ExampleActivity"/>
         <activity
             android:name=".example.ui.viewpager.ViewPagerActivity"

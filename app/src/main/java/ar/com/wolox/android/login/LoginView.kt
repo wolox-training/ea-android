@@ -7,4 +7,10 @@ interface LoginView {
     fun showEmptyEmailError()
 
     fun showInvalidEmailError()
+
+    fun openBrowser(url: String)
+
+    fun goToSignUp()
+
+    fun goToHome()
 }

@@ -1,6 +1,7 @@
 package ar.com.wolox.android.login
 
 import ar.com.wolox.android.example.utils.UserSession
+import ar.com.wolox.android.extfunctions.isValidEmail
 import ar.com.wolox.android.login.utils.Errors
 import ar.com.wolox.wolmo.core.presenter.BasePresenter
 import javax.inject.Inject
@@ -13,7 +14,7 @@ class LoginPresenter @Inject constructor(private val userSession: UserSession) :
 
         if (email.isEmpty()) {
             totalErrors.add(Errors.EMPTY_EMAIL)
-        } else if (!isEmailValid(email)) {
+        } else if (!email.isValidEmail()) {
             totalErrors.add(Errors.INVALID_EMAIL)
         }
 
@@ -22,20 +23,22 @@ class LoginPresenter @Inject constructor(private val userSession: UserSession) :
         }
 
         if (totalErrors.isEmpty()) {
-
             userSession.email = email
             userSession.password = password
+            view?.goToHome()
         } else {
-
             for (actualError in totalErrors) {
-
                 actualError.callAction(view!!)
             }
         }
     }
 
-    private fun isEmailValid(email: String): Boolean {
+    fun onTermsAndConditionsTextClick() = view?.openBrowser(WOLOX_URL)
 
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    fun onSignUpButtonClick() = view?.goToSignUp()
+
+    companion object {
+
+        private const val WOLOX_URL = "www.wolox.com.ar"
     }
 }

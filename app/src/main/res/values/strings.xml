@@ -26,5 +26,7 @@
     <string name="empty_email_error">You must enter your email</string>
     <string name="empty_password_error">You must enter your password</string>
     <string name="invalid_email_error">Invalid e-mail format</string>
+    <string name="home_sample_text">Home Activity</string>
+    <string name="sign_up_sample_text">Sign Up Screen</string>
 
 </resources>
