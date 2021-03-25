@@ -1,11 +1,13 @@
 package ar.com.wolox.android.features.auth.login
 
+import android.widget.Toast
 import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.LoginFragmentBinding
 import ar.com.wolox.android.features.homepage.HomeActivity
 import ar.com.wolox.android.features.auth.signup.SignupActivity
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import ar.com.wolox.wolmo.core.util.openBrowser
+import okhttp3.ResponseBody
 
 class LoginFragment : WolmoFragment<LoginFragmentBinding, LoginPresenter>(), LoginView {
 
@@ -45,6 +47,17 @@ class LoginFragment : WolmoFragment<LoginFragmentBinding, LoginPresenter>(), Log
             emailEditText.error = getString(R.string.invalid_email_error)
         }
     }
+
+    override fun showResponseError(failedResponse: ResponseBody?) {
+        // failedResponse
+        // implementar uso de los mensajes de error devueltos en el response body
+        Toast.makeText(requireContext(), getString(R.string.authentication_credential_error), Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showCallError() {
+        Toast.makeText(requireContext(), getString(R.string.authentication_call_error), Toast.LENGTH_SHORT).show()
+    }
+
     companion object {
         fun newInstance() = LoginFragment()
     }

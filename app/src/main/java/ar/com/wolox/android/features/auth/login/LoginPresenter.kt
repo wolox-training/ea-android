@@ -1,12 +1,20 @@
 package ar.com.wolox.android.features.auth.login
 
+import ar.com.wolox.android.example.network.builder.networkRequest
+import ar.com.wolox.android.example.network.repository.UserRepository
 import ar.com.wolox.android.utils.UserSession
 import ar.com.wolox.android.extfunctions.isValidEmail
+import ar.com.wolox.android.models.LoginBody
+import ar.com.wolox.android.models.User
 import ar.com.wolox.android.utils.Errors
-import ar.com.wolox.wolmo.core.presenter.BasePresenter
+import ar.com.wolox.wolmo.core.presenter.CoroutineBasePresenter
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class LoginPresenter @Inject constructor(private val userSession: UserSession) : BasePresenter<LoginView>() {
+class LoginPresenter @Inject constructor(
+    private val userSession: UserSession,
+    private val userRepository: UserRepository
+) : CoroutineBasePresenter<LoginView>() {
 
     fun onLogInButtonClick(email: String, password: String) {
 
@@ -23,9 +31,7 @@ class LoginPresenter @Inject constructor(private val userSession: UserSession) :
         }
 
         if (totalErrors.isEmpty()) {
-            userSession.email = email
-            userSession.password = password
-            view?.goToHome()
+            validateLogin(LoginBody(email, password))
         } else {
             for (actualError in totalErrors) {
                 actualError.callAction(view!!)
@@ -36,6 +42,24 @@ class LoginPresenter @Inject constructor(private val userSession: UserSession) :
     fun onTermsAndConditionsTextClick() = view?.openBrowser(WOLOX_URL)
 
     fun onSignUpButtonClick() = view?.goToSignUp()
+
+    private fun validateLogin(loginBody: LoginBody) {
+        launch {
+            networkRequest(userRepository.login(loginBody)) {
+                onResponseSuccessful { response -> onValidLogin(response!!)
+                    userSession.email = loginBody.email
+                    userSession.password = loginBody.password }
+                onResponseFailed { failedResponse, _ -> view?.showResponseError(failedResponse) }
+                onCallFailure { view?.showCallError() }
+            }
+        }
+    }
+
+    private fun onValidLogin(user: User) {
+        //
+
+        view?.goToHome()
+    }
 
     companion object {
 
