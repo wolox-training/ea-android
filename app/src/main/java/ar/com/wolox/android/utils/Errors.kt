@@ -1,6 +1,6 @@
-package ar.com.wolox.android.login.utils
+package ar.com.wolox.android.utils
 
-import ar.com.wolox.android.login.LoginView
+import ar.com.wolox.android.features.auth.login.LoginView
 
 enum class Errors {
     EMPTY_PASSWORD {

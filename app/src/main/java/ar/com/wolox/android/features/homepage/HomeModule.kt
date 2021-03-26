@@ -1,4 +1,4 @@
-package ar.com.wolox.android.homepage
+package ar.com.wolox.android.features.homepage
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

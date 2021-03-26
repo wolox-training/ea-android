@@ -28,5 +28,7 @@
     <string name="invalid_email_error">Invalid e-mail format</string>
     <string name="home_sample_text">Home Activity</string>
     <string name="sign_up_sample_text">Sign Up Screen</string>
+    <string name="authentication_call_error">An error occurred. Please try again.</string>
+    <string name="authentication_credential_error">User not registered or invalid password.</string>
 
 </resources>

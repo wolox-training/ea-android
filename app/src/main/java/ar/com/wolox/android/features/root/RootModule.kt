@@ -1,4 +1,4 @@
-package ar.com.wolox.android.root
+package ar.com.wolox.android.features.root
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

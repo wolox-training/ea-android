@@ -1,4 +1,4 @@
-package ar.com.wolox.android.example.utils
+package ar.com.wolox.android.utils
 
 import ar.com.wolox.wolmo.core.di.scopes.ApplicationScope
 import ar.com.wolox.wolmo.core.util.SharedPreferencesManager
@@ -21,20 +21,20 @@ class UserSession @Inject constructor(private val sharedPreferencesManager: Shar
         }
 
     var email: String? = null
-        get() = field ?: sharedPreferencesManager[ar.com.wolox.android.login.utils.Extras.UserLoginEmailPassword.EMAIL, null].also {
+        get() = field ?: sharedPreferencesManager[Extras.UserLogin.EMAIL, null].also {
             field = it
         }
         set(email) {
             field = email
-            sharedPreferencesManager.store(ar.com.wolox.android.login.utils.Extras.UserLoginEmailPassword.EMAIL, email)
+            sharedPreferencesManager.store(Extras.UserLogin.EMAIL, email)
         }
 
     var password: String? = null
-        get() = field ?: sharedPreferencesManager[ar.com.wolox.android.login.utils.Extras.UserLoginEmailPassword.PASSWORD, null].also {
+        get() = field ?: sharedPreferencesManager[Extras.UserLogin.PASSWORD, null].also {
             field = it
         }
         set(password) {
             field = password
-            sharedPreferencesManager.store(ar.com.wolox.android.login.utils.Extras.UserLoginEmailPassword.PASSWORD, password)
+            sharedPreferencesManager.store(Extras.UserLogin.PASSWORD, password)
         }
 }

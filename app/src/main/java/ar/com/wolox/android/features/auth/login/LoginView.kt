@@ -1,4 +1,6 @@
-package ar.com.wolox.android.login
+package ar.com.wolox.android.features.auth.login
+
+import okhttp3.ResponseBody
 
 interface LoginView {
 
@@ -7,6 +9,10 @@ interface LoginView {
     fun showEmptyEmailError()
 
     fun showInvalidEmailError()
+
+    fun showCallError()
+
+    fun showResponseError(failedResponse: ResponseBody?)
 
     fun openBrowser(url: String)
 
