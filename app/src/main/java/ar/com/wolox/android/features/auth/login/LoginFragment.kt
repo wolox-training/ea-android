@@ -1,5 +1,6 @@
 package ar.com.wolox.android.features.auth.login
 
+import android.view.View
 import android.widget.Toast
 import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.LoginFragmentBinding
@@ -54,6 +55,18 @@ class LoginFragment : WolmoFragment<LoginFragmentBinding, LoginPresenter>(), Log
 
     override fun showCallError() {
         Toast.makeText(requireContext(), getString(R.string.authentication_call_error), Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showProgressBar() {
+        with(binding) {
+            simpleProgressBar.visibility = View.VISIBLE
+        }
+    }
+
+    override fun hideProgressBar() {
+        with(binding) {
+            simpleProgressBar.visibility = View.INVISIBLE
+        }
     }
 
     companion object {

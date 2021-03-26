@@ -14,6 +14,10 @@ interface LoginView {
 
     fun showResponseError(failedResponse: ResponseBody?)
 
+    fun showProgressBar()
+
+    fun hideProgressBar()
+
     fun openBrowser(url: String)
 
     fun goToSignUp()
