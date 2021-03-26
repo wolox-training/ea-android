@@ -7,7 +7,6 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface LoginService {
-
-    @POST("https://w-android-traning-backup2.herokuapp.com/auth/sign_in")
+    @POST("/auth/sign_in")
     suspend fun login(@Body loginBody: LoginBody): Response<User>
 }

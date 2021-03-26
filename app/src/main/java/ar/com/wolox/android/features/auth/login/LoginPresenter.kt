@@ -18,7 +18,7 @@ class LoginPresenter @Inject constructor(
 
     fun onLogInButtonClick(email: String, password: String) {
 
-        val totalErrors: MutableList<Errors> = ArrayList()
+        val totalErrors: ArrayList<Errors> = ArrayList()
 
         if (email.isEmpty()) {
             totalErrors.add(Errors.EMPTY_EMAIL)
@@ -29,13 +29,11 @@ class LoginPresenter @Inject constructor(
         if (password.isEmpty()) {
             totalErrors.add(Errors.EMPTY_PASSWORD)
         }
-
+        for (actualError in totalErrors) {
+            actualError.callAction(view!!)
+        }
         if (totalErrors.isEmpty()) {
             validateLogin(LoginBody(email, password))
-        } else {
-            for (actualError in totalErrors) {
-                actualError.callAction(view!!)
-            }
         }
     }
 
@@ -56,13 +54,10 @@ class LoginPresenter @Inject constructor(
     }
 
     private fun onValidLogin(user: User) {
-        //
-
         view?.goToHome()
     }
 
     companion object {
-
         private const val WOLOX_URL = "www.wolox.com.ar"
     }
 }

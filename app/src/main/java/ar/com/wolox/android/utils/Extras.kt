@@ -1,7 +1,8 @@
 package ar.com.wolox.android.utils
 
 object Extras {
-    object UserLoginEmailPassword {
+    object UserLogin {
+        const val USERNAME = "username"
         const val EMAIL = "email"
         const val PASSWORD = "password"
     }

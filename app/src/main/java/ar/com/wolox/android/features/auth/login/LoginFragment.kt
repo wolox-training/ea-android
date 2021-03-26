@@ -49,8 +49,6 @@ class LoginFragment : WolmoFragment<LoginFragmentBinding, LoginPresenter>(), Log
     }
 
     override fun showResponseError(failedResponse: ResponseBody?) {
-        // failedResponse
-        // implementar uso de los mensajes de error devueltos en el response body
         Toast.makeText(requireContext(), getString(R.string.authentication_credential_error), Toast.LENGTH_SHORT).show()
     }
 
