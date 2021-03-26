@@ -8,7 +8,6 @@ import ar.com.wolox.android.features.homepage.HomeActivity
 import ar.com.wolox.android.features.auth.signup.SignupActivity
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import ar.com.wolox.wolmo.core.util.openBrowser
-import okhttp3.ResponseBody
 
 class LoginFragment : WolmoFragment<LoginFragmentBinding, LoginPresenter>(), LoginView {
 
@@ -49,7 +48,7 @@ class LoginFragment : WolmoFragment<LoginFragmentBinding, LoginPresenter>(), Log
         }
     }
 
-    override fun showResponseError(failedResponse: ResponseBody?) {
+    override fun showResponseError() {
         Toast.makeText(requireContext(), getString(R.string.authentication_credential_error), Toast.LENGTH_SHORT).show()
     }
 

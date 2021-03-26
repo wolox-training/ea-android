@@ -48,7 +48,7 @@ class LoginPresenter @Inject constructor(
                 onResponseSuccessful { response -> onValidLogin(response!!)
                     userSession.email = loginBody.email
                     userSession.password = loginBody.password }
-                onResponseFailed { failedResponse, _ -> view?.showResponseError(failedResponse) }
+                onResponseFailed { _, _ -> view?.showResponseError() }
                 onCallFailure { view?.showCallError() }
             }
             view?.hideProgressBar()
