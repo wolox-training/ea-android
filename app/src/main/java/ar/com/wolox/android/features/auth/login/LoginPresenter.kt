@@ -54,6 +54,8 @@ class LoginPresenter @Inject constructor(
     }
 
     private fun onValidLogin(user: User) {
+        userSession.isOngoingSession = true
+        // TODO store token, uid and client
         view?.goToHome()
     }
 
