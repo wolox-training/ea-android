@@ -18,21 +18,20 @@ class LoginPresenter @Inject constructor(
 
     fun onLogInButtonClick(email: String, password: String) {
 
-        val totalErrors: ArrayList<Errors> = ArrayList()
+        var notErrorFounds = true
 
         if (email.isEmpty()) {
-            totalErrors.add(Errors.EMPTY_EMAIL)
+            Errors.EMPTY_EMAIL.callAction(view!!)
+            notErrorFounds = false
+        } else if (password.isEmpty()) {
+            Errors.EMPTY_PASSWORD.callAction(view!!)
+            notErrorFounds = false
         } else if (!email.isValidEmail()) {
-            totalErrors.add(Errors.INVALID_EMAIL)
+            Errors.INVALID_EMAIL.callAction(view!!)
+            notErrorFounds = false
         }
 
-        if (password.isEmpty()) {
-            totalErrors.add(Errors.EMPTY_PASSWORD)
-        }
-        for (actualError in totalErrors) {
-            actualError.callAction(view!!)
-        }
-        if (totalErrors.isEmpty()) {
+        if (notErrorFounds) {
             validateLogin(LoginBody(email, password))
         }
     }
@@ -40,6 +39,17 @@ class LoginPresenter @Inject constructor(
     fun onTermsAndConditionsTextClick() = view?.openBrowser(WOLOX_URL)
 
     fun onSignUpButtonClick() = view?.goToSignUp()
+
+    fun onEmailInputChanged(email: String) {
+        userSession.email = email
+    }
+
+    override fun onViewAttached() {
+        super.onViewAttached()
+        if (!userSession.email.isNullOrBlank()) {
+            view?.loadEmail(userSession.email!!)
+        }
+    }
 
     private fun validateLogin(loginBody: LoginBody) {
         launch {

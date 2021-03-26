@@ -16,6 +16,8 @@ interface LoginView {
 
     fun hideProgressBar()
 
+    fun loadEmail(email: String)
+
     fun openBrowser(url: String)
 
     fun goToSignUp()

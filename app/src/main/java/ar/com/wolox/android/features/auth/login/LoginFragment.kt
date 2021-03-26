@@ -2,6 +2,7 @@ package ar.com.wolox.android.features.auth.login
 
 import android.view.View
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.LoginFragmentBinding
 import ar.com.wolox.android.features.homepage.HomeActivity
@@ -18,6 +19,7 @@ class LoginFragment : WolmoFragment<LoginFragmentBinding, LoginPresenter>(), Log
 
     override fun setListeners() {
         with(binding) {
+            emailEditText.addTextChangedListener { presenter.onEmailInputChanged(it.toString()) }
             logInButton.setOnClickListener { presenter.onLogInButtonClick(emailEditText.text.toString(), passwordEditText.text.toString()) }
             signUpButton.setOnClickListener { presenter.onSignUpButtonClick() }
             termsAndConditionTextView.setOnClickListener { presenter.onTermsAndConditionsTextClick() }
@@ -32,13 +34,13 @@ class LoginFragment : WolmoFragment<LoginFragmentBinding, LoginPresenter>(), Log
 
     override fun showEmptyEmailError() {
         with(binding) {
-            emailEditText.error = getString(R.string.empty_email_error)
+            emailEditText.error = getString(R.string.empty_field_error)
         }
     }
 
     override fun showEmptyPasswordError() {
         with(binding) {
-            passwordEditText.error = getString(R.string.empty_password_error)
+            passwordEditText.error = getString(R.string.empty_field_error)
         }
     }
 
@@ -65,6 +67,12 @@ class LoginFragment : WolmoFragment<LoginFragmentBinding, LoginPresenter>(), Log
     override fun hideProgressBar() {
         with(binding) {
             simpleProgressBar.visibility = View.INVISIBLE
+        }
+    }
+
+    override fun loadEmail(email: String) {
+        with(binding) {
+                emailEditText.setText(email)
         }
     }
 
