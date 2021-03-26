@@ -43,13 +43,15 @@ class LoginPresenter @Inject constructor(
 
     private fun validateLogin(loginBody: LoginBody) {
         launch {
+            view?.showProgressBar()
             networkRequest(userRepository.login(loginBody)) {
                 onResponseSuccessful { response -> onValidLogin(response!!)
                     userSession.email = loginBody.email
                     userSession.password = loginBody.password }
-                onResponseFailed { failedResponse, _ -> view?.showResponseError(failedResponse) }
+                onResponseFailed { _, _ -> view?.showResponseError() }
                 onCallFailure { view?.showCallError() }
             }
+            view?.hideProgressBar()
         }
     }
 

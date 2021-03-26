@@ -1,5 +1,6 @@
 package ar.com.wolox.android.features.auth.login
 
+import android.view.View
 import android.widget.Toast
 import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.LoginFragmentBinding
@@ -7,7 +8,6 @@ import ar.com.wolox.android.features.homepage.HomeActivity
 import ar.com.wolox.android.features.auth.signup.SignupActivity
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import ar.com.wolox.wolmo.core.util.openBrowser
-import okhttp3.ResponseBody
 
 class LoginFragment : WolmoFragment<LoginFragmentBinding, LoginPresenter>(), LoginView {
 
@@ -48,12 +48,24 @@ class LoginFragment : WolmoFragment<LoginFragmentBinding, LoginPresenter>(), Log
         }
     }
 
-    override fun showResponseError(failedResponse: ResponseBody?) {
+    override fun showResponseError() {
         Toast.makeText(requireContext(), getString(R.string.authentication_credential_error), Toast.LENGTH_SHORT).show()
     }
 
     override fun showCallError() {
         Toast.makeText(requireContext(), getString(R.string.authentication_call_error), Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showProgressBar() {
+        with(binding) {
+            simpleProgressBar.visibility = View.VISIBLE
+        }
+    }
+
+    override fun hideProgressBar() {
+        with(binding) {
+            simpleProgressBar.visibility = View.INVISIBLE
+        }
     }
 
     companion object {
