@@ -44,6 +44,13 @@ class LoginPresenter @Inject constructor(
         userSession.email = email
     }
 
+    override fun onViewAttached() {
+        super.onViewAttached()
+        if (!userSession.email.isNullOrBlank()) {
+            view?.loadEmail(userSession.email!!)
+        }
+    }
+
     private fun validateLogin(loginBody: LoginBody) {
         launch {
             view?.showProgressBar()

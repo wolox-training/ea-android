@@ -7,20 +7,14 @@ import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.LoginFragmentBinding
 import ar.com.wolox.android.features.homepage.HomeActivity
 import ar.com.wolox.android.features.auth.signup.SignupActivity
-import ar.com.wolox.android.utils.UserSession
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import ar.com.wolox.wolmo.core.util.openBrowser
-import javax.inject.Inject
 
 class LoginFragment : WolmoFragment<LoginFragmentBinding, LoginPresenter>(), LoginView {
-
-    @Inject
-    lateinit var userSession: UserSession
 
     override fun layout() = R.layout.login_fragment
 
     override fun init() {
-        loadEmail()
     }
 
     override fun setListeners() {
@@ -76,11 +70,9 @@ class LoginFragment : WolmoFragment<LoginFragmentBinding, LoginPresenter>(), Log
         }
     }
 
-    private fun loadEmail() {
+    override fun loadEmail(email: String) {
         with(binding) {
-            if (!userSession.email.isNullOrBlank()) {
-                emailEditText.setText(userSession.email)
-            }
+                emailEditText.setText(email)
         }
     }
 
