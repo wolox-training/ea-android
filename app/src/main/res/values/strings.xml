@@ -29,5 +29,6 @@
     <string name="sign_up_sample_text">Sign Up Screen</string>
     <string name="authentication_call_error">Connection error. Please try again.</string>
     <string name="authentication_credential_error">Wrong email or password.</string>
+    <string name="wolox">Wolox</string>
 
 </resources>
