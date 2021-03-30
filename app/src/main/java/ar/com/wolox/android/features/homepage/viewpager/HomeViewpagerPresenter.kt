@@ -6,7 +6,6 @@ import javax.inject.Inject
 
 class HomeViewpagerPresenter @Inject constructor() : BasePresenter<HomeViewpagerView>() {
     fun onTabsClicked(fragment: Fragment) {
-        view?.displayFragment(fragment)
     }
     fun onProfileTabToggleFocus() {
     }

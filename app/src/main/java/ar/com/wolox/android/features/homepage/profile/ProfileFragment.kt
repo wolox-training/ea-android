@@ -10,7 +10,6 @@ class ProfileFragment @Inject constructor() : WolmoFragment<ProfileFragmentBindi
     override fun layout() = R.layout.profile_fragment
 
     override fun init() {
-        TODO("Not yet implemented")
     }
     companion object {
         fun newInstance() = ProfileFragment()

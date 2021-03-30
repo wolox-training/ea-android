@@ -1,6 +1,5 @@
 package ar.com.wolox.android.features.homepage.viewpager
 
-import androidx.fragment.app.Fragment
 import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.HomeViewpagerFragmentBinding
 import ar.com.wolox.android.features.homepage.news.NewsFragment
@@ -19,19 +18,22 @@ class HomeViewpagerFragment private constructor() : WolmoFragment<HomeViewpagerF
     override fun layout() = R.layout.home_viewpager_fragment
 
     override fun init() {
-        displayFragment(newsFragment)
+        setUpTabs()
     }
 
-    override fun setListeners() {
-        with(binding) {
-            newsTab.setOnClickListener { presenter.onTabsClicked(newsFragment) }
-            profileTab.setOnClickListener { presenter.onTabsClicked(profileFragment) }
-        }
-    }
+    private fun setUpTabs() {
 
-    override fun displayFragment(fragment: Fragment) {
         with(binding) {
-            requireActivity().supportFragmentManager.beginTransaction().add(displayFrame.id, fragment).commit()
+            val adapter = ViewPagerAdapter(activity!!.supportFragmentManager).apply {
+                addFragment(newsFragment)
+                addFragment(profileFragment)
+            }
+            viewPager.adapter = adapter
+            tabLayout.apply {
+                tabLayout.setupWithViewPager(viewPager)
+                getTabAt(0)!!.setIcon(R.drawable.news_tab_selector).text = context.getString(R.string.news_tab_text)
+                getTabAt(1)!!.setIcon(R.drawable.profile_tab_selector).text = context.getString(R.string.profile_tab_text)
+            }
         }
     }
 

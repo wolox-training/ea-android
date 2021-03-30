@@ -40,6 +40,9 @@ class UserSession @Inject constructor(private val sharedPreferencesManager: Shar
         }
 
     var isOngoingSession: Boolean = false
+        get() = field.also {
+            field = it
+        }
         set(isOngoingSession) {
             field = isOngoingSession
             sharedPreferencesManager.store(Extras.UserLogin.IS_ONGOING_SESSION, isOngoingSession)

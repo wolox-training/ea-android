@@ -12,25 +12,27 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/wolox_medium_spacing"
             app:layout_constraintTop_toBottomOf="@+id/woloxTextView"
-            app:tabGravity="fill"
+            app:tabTextAppearance="@style/tab_text"
+            app:tabSelectedTextColor="@color/colorAccent"
+            app:tabTextColor="@color/colorWoloxLightGrey"
             app:tabMode="fixed">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/newsTab"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:icon="@drawable/news_tab_selector" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/profileTab"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:icon="@drawable/profile_tab_selector" />
 
         </com.google.android.material.tabs.TabLayout>
 
-        <FrameLayout
-            android:id="@+id/displayFrame"
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -55,7 +57,8 @@
             android:layout_marginStart="72dp"
             android:gravity="center|start"
             android:text="@string/wolox"
-            android:textAppearance="@style/TextAppearance.Compat.Notification.Title.Media"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
