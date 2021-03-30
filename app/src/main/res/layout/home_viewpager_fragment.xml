@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/wolox_medium_spacing"
+            app:layout_constraintTop_toBottomOf="@+id/woloxTextView"
+            app:tabTextAppearance="@style/tab_text"
+            app:tabSelectedTextColor="@color/colorAccent"
+            app:tabTextColor="@color/colorWoloxLightGrey"
+            app:tabMode="fixed">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/newsTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/news_tab_selector" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/profileTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/profile_tab_selector" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout" />
+
+        <ImageView
+            android:id="@+id/woloxLogoSmallImageView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/woloxTextView"
+            app:layout_constraintEnd_toStartOf="@+id/woloxTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/woloxTextView"
+            app:srcCompat="@drawable/wolox_logo" />
+
+        <TextView
+            android:id="@+id/woloxTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/wolox_big_spacing"
+            android:layout_marginStart="@dimen/wolox_big_margin_spacing"
+            android:gravity="center|start"
+            android:text="@string/wolox"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="@dimen/font_huge"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
