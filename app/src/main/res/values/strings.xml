@@ -32,5 +32,8 @@
     <string name="wolox">Wolox</string>
     <string name="news_tab_text">NEWS</string>
     <string name="profile_tab_text">PROFILE</string>
+    <string name="title_placeholder">Title</string>
+    <string name="description_placeholder">Description</string>
+    <string name="time_placeholder">15m</string>
 
 </resources>
