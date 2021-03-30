@@ -7,7 +7,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/newsImageView"
         android:layout_width="@dimen/wolox_medium_spacing"
         android:layout_height="@dimen/wolox_medium_spacing"
         android:layout_marginStart="@dimen/spacing_large"

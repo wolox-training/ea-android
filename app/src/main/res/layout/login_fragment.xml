@@ -31,7 +31,7 @@
             app:srcCompat="@drawable/wolox_cover_gradient" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/newsImageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/wolox_vertical_spacing_logo"
@@ -52,7 +52,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/newsImageView" />
 
         <EditText
             android:id="@+id/passwordEditText"
