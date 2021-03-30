@@ -17,6 +17,9 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
 
     override fun setListeners() {
         with(binding) {
+            newsSwipeRefresh.setOnRefreshListener {
+                newsSwipeRefresh.isRefreshing = false
+            }
         }
     }
 
