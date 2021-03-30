@@ -54,11 +54,11 @@
             android:id="@+id/woloxTextView"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/wolox_big_spacing"
-            android:layout_marginStart="72dp"
+            android:layout_marginStart="@dimen/wolox_big_margin_spacing"
             android:gravity="center|start"
             android:text="@string/wolox"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="24sp"
+            android:textSize="@dimen/font_huge"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
