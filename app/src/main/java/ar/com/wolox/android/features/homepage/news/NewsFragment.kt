@@ -12,7 +12,6 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
     override fun layout() = R.layout.news_fragment
 
     override fun init() {
-        setUpRecycler()
     }
 
     override fun setListeners() {
@@ -29,67 +28,11 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
         }
     }
 
-    private fun setUpRecycler() {
-        with(binding) {
-            with(newsRecyclerView) {
-                layoutManager = LinearLayoutManager(requireContext())
-                adapter = RecyclerAdapter(emulateDataSet())
-            }
+    override fun setUpRecycler(dataSet: List<News>) {
+        with(binding.newsRecyclerView) {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = RecyclerAdapter(dataSet, requireContext())
         }
-    }
-
-    private fun emulateDataSet(): Array<News> {
-        return arrayOf(
-            News(
-                getString(R.string.title_placeholder),
-                getString(R.string.description_placeholder),
-                true,
-                getString(R.string.time_placeholder),
-                getString(R.string.image_description)
-            ),
-            News(
-                getString(R.string.title_placeholder),
-                getString(R.string.description_placeholder),
-                true,
-                getString(R.string.time_placeholder),
-                getString(R.string.image_description)
-            ),
-            News(
-                getString(R.string.title_placeholder),
-                getString(R.string.description_placeholder),
-                true,
-                getString(R.string.time_placeholder),
-                getString(R.string.image_description)
-            ),
-            News(
-                getString(R.string.title_placeholder),
-                getString(R.string.description_placeholder),
-                true,
-                getString(R.string.time_placeholder),
-                getString(R.string.image_description)
-            ),
-            News(
-                getString(R.string.title_placeholder),
-                getString(R.string.description_placeholder),
-                true,
-                getString(R.string.time_placeholder),
-                getString(R.string.image_description)
-            ),
-            News(
-                getString(R.string.title_placeholder),
-                getString(R.string.description_placeholder),
-                true,
-                getString(R.string.time_placeholder),
-                getString(R.string.image_description)
-            ),
-            News(
-                getString(R.string.title_placeholder),
-                getString(R.string.description_placeholder),
-                true,
-                getString(R.string.time_placeholder),
-                getString(R.string.image_description)
-            )
-        )
     }
 
     companion object {
