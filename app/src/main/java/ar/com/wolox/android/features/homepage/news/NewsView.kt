@@ -1,3 +1,6 @@
 package ar.com.wolox.android.features.homepage.news
 
-interface NewsView
+interface NewsView {
+
+    fun stopRefreshing()
+}
