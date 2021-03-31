@@ -35,5 +35,6 @@
     <string name="title_placeholder">Title</string>
     <string name="description_placeholder">Description</string>
     <string name="time_placeholder">15m</string>
+    <string name="image_description">Image Description</string>
 
 </resources>

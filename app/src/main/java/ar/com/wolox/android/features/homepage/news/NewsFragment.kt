@@ -18,16 +18,23 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
     override fun setListeners() {
         with(binding) {
             newsSwipeRefresh.setOnRefreshListener {
-                newsSwipeRefresh.isRefreshing = false
+                presenter.onSwipeRefresh()
             }
+        }
+    }
+
+    override fun stopRefreshing() {
+        with(binding) {
+            newsSwipeRefresh.isRefreshing = false
         }
     }
 
     private fun setUpRecycler() {
         with(binding) {
-            val adapter = RecyclerAdapter(emulateDataSet())
-            newsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-            newsRecyclerView.adapter = adapter
+            with(newsRecyclerView) {
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = RecyclerAdapter(emulateDataSet())
+            }
         }
     }
 
@@ -38,49 +45,49 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
                 getString(R.string.description_placeholder),
                 true,
                 getString(R.string.time_placeholder),
-                resources.getDrawable(R.drawable.wolox_cover_gradient)
+                getString(R.string.image_description)
             ),
             News(
                 getString(R.string.title_placeholder),
                 getString(R.string.description_placeholder),
                 true,
                 getString(R.string.time_placeholder),
-                resources.getDrawable(R.drawable.wolox_cover_gradient)
+                getString(R.string.image_description)
             ),
             News(
                 getString(R.string.title_placeholder),
                 getString(R.string.description_placeholder),
                 true,
                 getString(R.string.time_placeholder),
-                resources.getDrawable(R.drawable.wolox_cover_gradient)
+                getString(R.string.image_description)
             ),
             News(
                 getString(R.string.title_placeholder),
                 getString(R.string.description_placeholder),
                 true,
                 getString(R.string.time_placeholder),
-                resources.getDrawable(R.drawable.wolox_cover_gradient)
+                getString(R.string.image_description)
             ),
             News(
                 getString(R.string.title_placeholder),
                 getString(R.string.description_placeholder),
                 true,
                 getString(R.string.time_placeholder),
-                resources.getDrawable(R.drawable.wolox_cover_gradient)
+                getString(R.string.image_description)
             ),
             News(
                 getString(R.string.title_placeholder),
                 getString(R.string.description_placeholder),
                 true,
                 getString(R.string.time_placeholder),
-                resources.getDrawable(R.drawable.wolox_cover_gradient)
+                getString(R.string.image_description)
             ),
             News(
                 getString(R.string.title_placeholder),
                 getString(R.string.description_placeholder),
                 true,
                 getString(R.string.time_placeholder),
-                resources.getDrawable(R.drawable.wolox_cover_gradient)
+                getString(R.string.image_description)
             )
         )
     }
