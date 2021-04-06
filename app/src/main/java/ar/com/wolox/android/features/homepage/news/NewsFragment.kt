@@ -20,8 +20,8 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
         with(binding) {
             newsSwipeRefresh.setOnRefreshListener { presenter.onSwipeRefresh() }
             newsRecyclerView.addOnScrollListener(object : EndlessRecyclerViewScrollListener() {
-                override fun onLoadMore() {
-                    presenter.onLoadMoreRequested()
+                override fun onLoadMore(lastVisibleItemPosition: Int) {
+                    presenter.onLoadMoreRequested(lastVisibleItemPosition, (newsRecyclerView.adapter as RecyclerAdapter).itemCount)
                 }
             })
         }
@@ -42,7 +42,6 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
     override fun clearNewsFeed() {
         with(binding.newsRecyclerView) {
             (adapter as RecyclerAdapter).clearData()
-            // listener.resetState()
         }
     }
 

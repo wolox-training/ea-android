@@ -10,6 +10,9 @@ import javax.inject.Inject
 class NewsPresenter @Inject constructor(private val newsRepository: NewsRepository) : CoroutineBasePresenter<NewsView>() {
 
     private var nextPage: Int? = null
+    private var totalPages: Int? = null
+    private var loading: Boolean = true
+    private val visibleThreshold = 5
 
     override fun onViewAttached() {
         requestFirstPage()
@@ -20,8 +23,11 @@ class NewsPresenter @Inject constructor(private val newsRepository: NewsReposito
         view?.stopRefreshing()
     }
 
-    fun onLoadMoreRequested() {
-        requestPage(nextPage)
+    fun onLoadMoreRequested(lastVisibleItemPosition: Int, dataSetSize: Int) {
+        if (!loading && (lastVisibleItemPosition + visibleThreshold) > dataSetSize && nextPage!! <= totalPages!!) {
+            loading = true
+            requestPage(nextPage)
+        }
     }
 
     private fun requestFirstPage() {
@@ -40,10 +46,12 @@ class NewsPresenter @Inject constructor(private val newsRepository: NewsReposito
                 onResponseFailed { _, _ -> view?.showResponseError() }
                 onCallFailure { view?.showCallError() }
             }
+            loading = false
         }
     }
 
     private fun onPageLoaded(newsPage: NewsPage) {
+        totalPages = newsPage.total_pages
         nextPage = newsPage.next_page
         view?.updateNews(newsPage.page)
     }

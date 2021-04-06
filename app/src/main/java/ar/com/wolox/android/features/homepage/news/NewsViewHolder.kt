@@ -21,6 +21,7 @@ class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val viewImage: ImageView = view.findViewById(R.id.newsImageView)
 
     @SuppressLint("NewApi")
+    // Context is required by Glide
     fun populate(dataSet: News?, context: Context) {
         with(dataSet!!) {
             viewTitle.text = commenter
