@@ -37,5 +37,6 @@
     <string name="time_placeholder">15m</string>
     <string name="image_description">Image Description</string>
     <string name="news_server_error">Server is not responding.</string>
+    <string name="post">Post</string>
 
 </resources>
