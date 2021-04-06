@@ -9,31 +9,42 @@ import javax.inject.Inject
 
 class NewsPresenter @Inject constructor(private val newsRepository: NewsRepository) : CoroutineBasePresenter<NewsView>() {
 
+    private var nextPage: Int? = null
+
     override fun onViewAttached() {
+        requestFirstPage()
+    }
+
+    fun onSwipeRefresh() {
+        requestFirstPage()
+        view?.stopRefreshing()
+    }
+
+    fun onLoadMoreRequested() {
+        requestPage(nextPage)
+    }
+
+    private fun requestFirstPage() {
+        requestPage(null)
+    }
+
+    private fun requestPage(page: Int?) {
         launch {
-            networkRequest(newsRepository.getNewsList()) {
-                onResponseSuccessful { response -> onPageLoaded(response!!)
-                    // view?.setUpRecycler(response!!)
+            networkRequest(newsRepository.getNewsList(page)) {
+                onResponseSuccessful { response ->
+                    if (page == null) {
+                        view?.clearNewsFeed()
+                    }
+                    onPageLoaded(response!!)
                 }
-                onResponseFailed { _, _ -> }
-                onCallFailure { }
+                onResponseFailed { _, _ -> view?.showResponseError() }
+                onCallFailure { view?.showCallError() }
             }
         }
     }
 
     private fun onPageLoaded(newsPage: NewsPage) {
-        view?.setUpRecycler(newsPage.page)
-    }
-
-    fun onSwipeRefresh() {
-        launch {
-            networkRequest(newsRepository.getNewsList()) {
-                onResponseSuccessful { response -> onPageLoaded(response!!)
-                }
-                onResponseFailed { _, _ -> }
-                onCallFailure { }
-            }
-            view?.stopRefreshing()
-        }
+        nextPage = newsPage.next_page
+        view?.updateNews(newsPage.page)
     }
 }

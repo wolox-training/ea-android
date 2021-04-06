@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import ar.com.wolox.android.R
 import ar.com.wolox.android.models.News
 
-class RecyclerAdapter(private val dataSet: List<News>, private val context: Context) : RecyclerView.Adapter<NewsViewHolder>() {
+class RecyclerAdapter(private val context: Context) : RecyclerView.Adapter<NewsViewHolder>() {
+
+    private var dataSet: MutableList<News> = mutableListOf<News>()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): NewsViewHolder {
 
@@ -22,4 +24,14 @@ class RecyclerAdapter(private val dataSet: List<News>, private val context: Cont
     }
 
     override fun getItemCount() = dataSet.size
+
+    fun clearData() {
+        dataSet.clear()
+        this.notifyDataSetChanged()
+    }
+
+    fun addNews(nextNewsPage: List<News>) {
+        dataSet.addAll(nextNewsPage)
+        this.notifyDataSetChanged()
+    }
 }

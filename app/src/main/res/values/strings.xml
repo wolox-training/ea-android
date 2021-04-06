@@ -27,7 +27,7 @@
     <string name="invalid_email_error">Invalid e-mail format.</string>
     <string name="home_sample_text">Home Activity</string>
     <string name="sign_up_sample_text">Sign Up Screen</string>
-    <string name="authentication_call_error">Connection error. Please try again.</string>
+    <string name="connection_call_error">Connection error. Please try again.</string>
     <string name="authentication_credential_error">Wrong email or password.</string>
     <string name="wolox">Wolox</string>
     <string name="news_tab_text">NEWS</string>
@@ -36,5 +36,6 @@
     <string name="description_placeholder">Description</string>
     <string name="time_placeholder">15m</string>
     <string name="image_description">Image Description</string>
+    <string name="news_server_error">Server is not responding.</string>
 
 </resources>

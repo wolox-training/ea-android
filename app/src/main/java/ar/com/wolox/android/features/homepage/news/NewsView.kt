@@ -6,5 +6,11 @@ interface NewsView {
 
     fun stopRefreshing()
 
-    fun setUpRecycler(dataSet: List<News>)
+    fun updateNews(dataSet: List<News>)
+
+    fun clearNewsFeed()
+
+    fun showResponseError()
+
+    fun showCallError()
 }

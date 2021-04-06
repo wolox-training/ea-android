@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ar.com.wolox.android.R
 import ar.com.wolox.android.models.News
-import com.bumptech.glide.Glide
 
 class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -23,7 +22,8 @@ class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             viewTitle.text = commenter
             viewDescription.text = comment
             viewTime.text = date
-            Glide.with(context).load(avatar).into(viewImage)
+            // Glide.with(context).clear(viewImage)
+            // Glide.with(context).load(avatar).into(viewImage)
         }
     }
 }
