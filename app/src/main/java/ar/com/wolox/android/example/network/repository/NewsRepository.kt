@@ -12,10 +12,6 @@ class NewsRepository @Inject constructor (private val retrofitServices: Retrofit
         get() = retrofitServices.getService(NewsService::class.java)
 
     suspend fun getNewsList(page: Int?) = withContext(Dispatchers.IO) {
-        if (page != null) {
-            NetworkRequestHandler.safeApiCall { services.getNewsPage(page) }
-        } else {
-            NetworkRequestHandler.safeApiCall { services.getFirstPage() }
-        }
+        page?.let { NetworkRequestHandler.safeApiCall { services.getNewsPage(page) } } ?: NetworkRequestHandler.safeApiCall { services.getFirstPage() }
     }
 }

@@ -18,7 +18,6 @@ import javax.inject.Inject
 class BootstrapApplication : WolmoApplication() {
 
     @Inject
-
     lateinit var userSession: UserSession
 
     override fun onInit() {
