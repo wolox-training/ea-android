@@ -14,30 +14,26 @@ class NewsPresenter @Inject constructor(private val newsRepository: NewsReposito
     private var loading: Boolean = true
 
     override fun onViewAttached() {
-        requestFirstPage()
+        requestPage()
     }
 
     fun onSwipeRefresh() {
-        requestFirstPage()
+        requestPage()
         view?.stopRefreshing()
     }
 
     fun onLoadMoreRequested(lastVisibleItemPosition: Int, dataSetSize: Int) {
         if (!loading && (lastVisibleItemPosition + VISIBLE_THRESHOLD) > dataSetSize && nextPage!! <= totalPages!!) {
             loading = true
-            requestPage(nextPage)
+            requestPage(nextPage!!)
         }
     }
 
-    private fun requestFirstPage() {
-        requestPage(null)
-    }
-
-    private fun requestPage(page: Int?) {
+    private fun requestPage(page: Int = 1) {
         launch {
             networkRequest(newsRepository.getNewsList(page)) {
                 onResponseSuccessful { response ->
-                    if (page == null) {
+                    if (page == 1) {
                         view?.clearNewsFeed()
                     }
                     onPageLoaded(response!!)

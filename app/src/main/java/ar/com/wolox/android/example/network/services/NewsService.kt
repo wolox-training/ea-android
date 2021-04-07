@@ -10,8 +10,6 @@ import retrofit2.http.Query
 
 interface NewsService {
     @GET("/comments")
-    suspend fun getFirstPage(): Response<NewsPage>
-    @GET("/comments")
     suspend fun getNewsPage(@Query("page")page: Int): Response<NewsPage>
     @GET("/comments/{id}")
     suspend fun getNewsById(@Path("id") id: Int): Response<News>
