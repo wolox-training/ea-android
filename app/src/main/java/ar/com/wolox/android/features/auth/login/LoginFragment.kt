@@ -55,7 +55,7 @@ class LoginFragment : WolmoFragment<LoginFragmentBinding, LoginPresenter>(), Log
     }
 
     override fun showCallError() {
-        Toast.makeText(requireContext(), getString(R.string.authentication_call_error), Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), getString(R.string.connection_call_error), Toast.LENGTH_SHORT).show()
     }
 
     override fun showProgressBar() {

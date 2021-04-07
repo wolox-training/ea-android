@@ -1,5 +1,6 @@
 package ar.com.wolox.android.features.homepage.news
 
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.NewsFragmentBinding
@@ -17,9 +18,12 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
 
     override fun setListeners() {
         with(binding) {
-            newsSwipeRefresh.setOnRefreshListener {
-                presenter.onSwipeRefresh()
-            }
+            newsSwipeRefresh.setOnRefreshListener { presenter.onSwipeRefresh() }
+            newsRecyclerView.addOnScrollListener(object : EndlessRecyclerViewScrollListener() {
+                override fun onLoadMore(lastVisibleItemPosition: Int) {
+                    presenter.onLoadMoreRequested(lastVisibleItemPosition, (newsRecyclerView.adapter as RecyclerAdapter).itemCount)
+                }
+            })
         }
     }
 
@@ -29,67 +33,31 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
         }
     }
 
-    private fun setUpRecycler() {
-        with(binding) {
-            with(newsRecyclerView) {
-                layoutManager = LinearLayoutManager(requireContext())
-                adapter = RecyclerAdapter(emulateDataSet())
-            }
+    override fun updateNews(dataSet: List<News>) {
+        with(binding.newsRecyclerView) {
+            (adapter as RecyclerAdapter).addNews(dataSet)
         }
     }
 
-    private fun emulateDataSet(): Array<News> {
-        return arrayOf(
-            News(
-                getString(R.string.title_placeholder),
-                getString(R.string.description_placeholder),
-                true,
-                getString(R.string.time_placeholder),
-                getString(R.string.image_description)
-            ),
-            News(
-                getString(R.string.title_placeholder),
-                getString(R.string.description_placeholder),
-                true,
-                getString(R.string.time_placeholder),
-                getString(R.string.image_description)
-            ),
-            News(
-                getString(R.string.title_placeholder),
-                getString(R.string.description_placeholder),
-                true,
-                getString(R.string.time_placeholder),
-                getString(R.string.image_description)
-            ),
-            News(
-                getString(R.string.title_placeholder),
-                getString(R.string.description_placeholder),
-                true,
-                getString(R.string.time_placeholder),
-                getString(R.string.image_description)
-            ),
-            News(
-                getString(R.string.title_placeholder),
-                getString(R.string.description_placeholder),
-                true,
-                getString(R.string.time_placeholder),
-                getString(R.string.image_description)
-            ),
-            News(
-                getString(R.string.title_placeholder),
-                getString(R.string.description_placeholder),
-                true,
-                getString(R.string.time_placeholder),
-                getString(R.string.image_description)
-            ),
-            News(
-                getString(R.string.title_placeholder),
-                getString(R.string.description_placeholder),
-                true,
-                getString(R.string.time_placeholder),
-                getString(R.string.image_description)
-            )
-        )
+    override fun clearNewsFeed() {
+        with(binding.newsRecyclerView) {
+            (adapter as RecyclerAdapter).clearData()
+        }
+    }
+
+    override fun showResponseError() {
+        Toast.makeText(requireContext(), getString(R.string.news_server_error), Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showCallError() {
+        Toast.makeText(requireContext(), getString(R.string.connection_call_error), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setUpRecycler() {
+        with(binding.newsRecyclerView) {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = RecyclerAdapter(requireContext())
+        }
     }
 
     companion object {
