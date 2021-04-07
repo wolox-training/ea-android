@@ -1,6 +1,5 @@
 package ar.com.wolox.android.features.homepage.news
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import android.widget.ImageView
@@ -20,19 +19,14 @@ class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val viewTime: TextView = view.findViewById(R.id.timeTextView)
     val viewImage: ImageView = view.findViewById(R.id.newsImageView)
 
-    @SuppressLint("NewApi")
-    // Context is required by Glide
     fun populate(dataSet: News?, context: Context) {
         with(dataSet!!) {
             viewTitle.text = commenter
             viewDescription.text = comment
             viewTime.text = deltaTime(updated_at)
-            // Glide.with(context).clear(viewImage)
-            // Glide.with(context).load(avatar).into(viewImage)
         }
     }
 
-    @SuppressLint("NewApi")
     private fun deltaTime(lastUpdated: String): String {
 
         val currentTime = Instant.now()
