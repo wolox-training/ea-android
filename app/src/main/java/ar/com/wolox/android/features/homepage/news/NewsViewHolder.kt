@@ -1,6 +1,5 @@
 package ar.com.wolox.android.features.homepage.news
 
-import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import android.widget.RadioButton
@@ -19,11 +18,14 @@ class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val viewTime: TextView = view.findViewById(R.id.timeTextView)
     val viewImage: ImageView = view.findViewById(R.id.newsImageView)
 
-    fun populate(dataSet: News?, context: Context) {
+    fun populate(dataSet: News?, clickListener: OnItemClickListener) {
         with(dataSet!!) {
             viewTitle.text = commenter
             viewDescription.text = comment
             viewTime.text = deltaTime(updated_at)
+        }
+        itemView.setOnClickListener {
+            clickListener.onItemClicked(dataSet)
         }
     }
 

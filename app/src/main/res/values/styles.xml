@@ -14,7 +14,7 @@
 
     <style name="TextAppearance.Commenter" parent="TextAppearance.MaterialComponents.Headline3">
         <!-- Define your custom appearance here. -->
-        <item name="android:textSize">@dimen/font_large_extra</item>
+        <item name="android:textSize">@dimen/font_huge</item>
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
@@ -28,6 +28,12 @@
         <!-- Define your custom appearance here. -->
         <item name="android:textSize">@dimen/font_medium</item>
         <item name="android:textColor">@color/colorWoloxMediumGrey</item>
+    </style>
+
+    <style name="TextAppearance.Post" parent="TextAppearance.MaterialComponents.Headline3">
+        <!-- Define your custom appearance here. -->
+        <item name="android:textSize">@dimen/font_huge</item>
+        <item name="android:textColor">@color/cardview_light_background</item>
     </style>
 
 </resources>

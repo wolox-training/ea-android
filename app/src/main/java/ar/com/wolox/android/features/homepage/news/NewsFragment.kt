@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.NewsFragmentBinding
+import ar.com.wolox.android.features.homepage.news.details.NewsDetailsActivity
 import ar.com.wolox.android.models.News
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import javax.inject.Inject
@@ -56,7 +57,11 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
     private fun setUpRecycler() {
         with(binding.newsRecyclerView) {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = RecyclerAdapter(requireContext())
+            adapter = RecyclerAdapter(requireContext(), object : OnItemClickListener() {
+                override fun onItemClicked(news: News) {
+                    NewsDetailsActivity.start(requireContext())
+                }
+            })
         }
     }
 
