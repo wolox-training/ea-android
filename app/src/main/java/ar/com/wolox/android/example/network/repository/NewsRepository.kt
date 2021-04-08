@@ -14,4 +14,12 @@ class NewsRepository @Inject constructor (private val retrofitServices: Retrofit
     suspend fun getNewsList(page: Int = 1) = withContext(Dispatchers.IO) {
         NetworkRequestHandler.safeApiCall { services.getNewsPage(page) }
     }
+
+    suspend fun getNewById(id: Int) = withContext(Dispatchers.IO) {
+        NetworkRequestHandler.safeApiCall { services.getNewsById(id) }
+    }
+
+    suspend fun putLike(id: Int) = withContext(Dispatchers.IO) {
+        NetworkRequestHandler.safeApiCall { services.putLike(id) }
+    }
 }

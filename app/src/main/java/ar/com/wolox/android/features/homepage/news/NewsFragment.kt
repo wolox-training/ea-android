@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.NewsFragmentBinding
 import ar.com.wolox.android.features.homepage.news.details.NewsDetailsActivity
-import ar.com.wolox.android.models.News
+import ar.com.wolox.android.models.NewFromPage
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import javax.inject.Inject
 
@@ -14,7 +14,6 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
     override fun layout() = R.layout.news_fragment
 
     override fun init() {
-        setUpRecycler()
     }
 
     override fun setListeners() {
@@ -23,6 +22,11 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
             newsRecyclerView.addOnScrollListener(object : EndlessRecyclerViewScrollListener() {
                 override fun onLoadMore(lastVisibleItemPosition: Int) {
                     presenter.onLoadMoreRequested(lastVisibleItemPosition, (newsRecyclerView.adapter as RecyclerAdapter).itemCount)
+                }
+            })
+            (newsRecyclerView.adapter as RecyclerAdapter).setItemsListener(object : OnItemClickListener() {
+                override fun onItemClicked(newFromPage: NewFromPage) {
+                    presenter.onItemClicked(newFromPage)
                 }
             })
         }
@@ -34,7 +38,7 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
         }
     }
 
-    override fun updateNews(dataSet: List<News>) {
+    override fun updateNews(dataSet: List<NewFromPage>) {
         with(binding.newsRecyclerView) {
             (adapter as RecyclerAdapter).addNews(dataSet)
         }
@@ -54,14 +58,14 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
         Toast.makeText(requireContext(), getString(R.string.connection_call_error), Toast.LENGTH_SHORT).show()
     }
 
-    private fun setUpRecycler() {
+    override fun goToNewsDetails(newFromPage: NewFromPage, userId: Int) {
+        NewsDetailsActivity.start(requireContext(), newFromPage, userId)
+    }
+
+    override fun setUpRecycler(userId: Int) {
         with(binding.newsRecyclerView) {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = RecyclerAdapter(requireContext(), object : OnItemClickListener() {
-                override fun onItemClicked(news: News) {
-                    NewsDetailsActivity.start(requireContext())
-                }
-            })
+            adapter = RecyclerAdapter(requireContext(), userId)
         }
     }
 

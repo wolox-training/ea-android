@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ar.com.wolox.android.R
-import ar.com.wolox.android.models.News
+import ar.com.wolox.android.models.NewFromPage
 
-class RecyclerAdapter(private val context: Context, private val itemClickListener: OnItemClickListener) : RecyclerView.Adapter<NewsViewHolder>() {
+class RecyclerAdapter(private val context: Context, private val userId: Int) : RecyclerView.Adapter<NewsViewHolder>() {
 
-    private var dataSet: MutableList<News> = mutableListOf<News>()
+    private var dataSet: MutableList<NewFromPage> = mutableListOf<NewFromPage>()
+    private lateinit var itemClickListener: OnItemClickListener
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): NewsViewHolder {
 
@@ -19,18 +20,22 @@ class RecyclerAdapter(private val context: Context, private val itemClickListene
 
     override fun onBindViewHolder(newsViewHolder: NewsViewHolder, position: Int) {
 
-        newsViewHolder.populate(dataSet[position], itemClickListener)
+        newsViewHolder.populate(dataSet[position], itemClickListener, userId)
     }
 
     override fun getItemCount() = dataSet.size
+
+    fun setItemsListener(listener: OnItemClickListener) {
+        itemClickListener = listener
+    }
 
     fun clearData() {
         dataSet.clear()
         this.notifyDataSetChanged()
     }
 
-    fun addNews(nextNewsPage: List<News>) {
-        dataSet.addAll(nextNewsPage)
+    fun addNews(nextNewFromPagePage: List<NewFromPage>) {
+        dataSet.addAll(nextNewFromPagePage)
         this.notifyDataSetChanged()
     }
 }

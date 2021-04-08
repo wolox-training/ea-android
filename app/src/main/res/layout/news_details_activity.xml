@@ -18,6 +18,7 @@
                 android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:background="@null"
                 app:navigationIcon="@drawable/ic_back"
                 app:navigationIconTint="@color/cardview_light_background"
                 app:title="@string/post"
@@ -28,7 +29,7 @@
         <FrameLayout
             android:id="@+id/activityBaseContent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
