@@ -1,5 +1,6 @@
 package ar.com.wolox.android.features.homepage.news.details
 
+import android.widget.Toast
 import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.NewsDetailsFragmentBinding
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
@@ -42,9 +43,15 @@ class NewsDetailsFragment(
     }
 
     override fun onCallFailed() {
+        Toast.makeText(requireContext(), getString(R.string.connection_call_error), Toast.LENGTH_SHORT)
     }
 
     override fun onResponseFailed() {
+        Toast.makeText(requireContext(), getString(R.string.connection_call_error), Toast.LENGTH_SHORT)
+    }
+
+    override fun onLikeUpdateFailed() {
+        Toast.makeText(requireContext(), getString(R.string.like_update_failed), Toast.LENGTH_SHORT)
     }
 
     private fun setUpInitialData(commenter: String, comment: String, time: String, isLikedByUser: Boolean) {

@@ -24,7 +24,7 @@ class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             viewLikeButton.isChecked = userId in likes
         }
         itemView.setOnClickListener {
-            clickListener.onItemClicked(dataSet)
+            clickListener.onItemClicked(dataSet, this.layoutPosition)
         }
     }
 }

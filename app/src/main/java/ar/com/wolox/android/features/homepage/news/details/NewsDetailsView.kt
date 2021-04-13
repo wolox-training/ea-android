@@ -11,4 +11,6 @@ interface NewsDetailsView {
     fun onResponseFailed()
 
     fun onCallFailed()
+
+    fun onLikeUpdateFailed()
 }

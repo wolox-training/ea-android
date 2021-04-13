@@ -32,8 +32,12 @@ class NewsPresenter @Inject constructor(private val newsRepository: NewsReposito
         }
     }
 
-    fun onItemClicked(newFromPage: NewFromPage) {
-        view?.goToNewsDetails(newFromPage, userSession.id)
+    fun onItemClicked(newFromPage: NewFromPage, position: Int) {
+        view?.goToNewsDetails(newFromPage, userSession.id, position)
+    }
+
+    fun onResumedFragment() {
+        requestPage()
     }
 
     private fun requestPage(page: Int = 1) {

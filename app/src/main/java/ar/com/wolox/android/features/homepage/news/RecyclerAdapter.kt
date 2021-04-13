@@ -36,6 +36,7 @@ class RecyclerAdapter(private val context: Context, private val userId: Int) : R
 
     fun addNews(nextNewFromPagePage: List<NewFromPage>) {
         dataSet.addAll(nextNewFromPagePage)
+        dataSet.sortByDescending { newFromPage -> newFromPage.updated_at }
         this.notifyDataSetChanged()
     }
 }

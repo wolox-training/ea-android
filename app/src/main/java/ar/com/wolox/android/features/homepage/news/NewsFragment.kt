@@ -25,11 +25,16 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
                 }
             })
             (newsRecyclerView.adapter as RecyclerAdapter).setItemsListener(object : OnItemClickListener() {
-                override fun onItemClicked(newFromPage: NewFromPage) {
-                    presenter.onItemClicked(newFromPage)
+                override fun onItemClicked(newFromPage: NewFromPage, position: Int) {
+                    presenter.onItemClicked(newFromPage, position)
                 }
             })
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.onResumedFragment()
     }
 
     override fun stopRefreshing() {
@@ -58,8 +63,8 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
         Toast.makeText(requireContext(), getString(R.string.connection_call_error), Toast.LENGTH_SHORT).show()
     }
 
-    override fun goToNewsDetails(newFromPage: NewFromPage, userId: Int) {
-        NewsDetailsActivity.start(requireContext(), newFromPage, userId)
+    override fun goToNewsDetails(newFromPage: NewFromPage, userId: Int, position: Int) {
+        NewsDetailsActivity.start(requireContext(), newFromPage, userId, position)
     }
 
     override fun setUpRecycler(userId: Int) {

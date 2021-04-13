@@ -14,7 +14,7 @@ interface NewsView {
 
     fun showCallError()
 
-    fun goToNewsDetails(newFromPage: NewFromPage, userId: Int)
+    fun goToNewsDetails(newFromPage: NewFromPage, userId: Int, position: Int)
 
     fun setUpRecycler(userId: Int)
 }

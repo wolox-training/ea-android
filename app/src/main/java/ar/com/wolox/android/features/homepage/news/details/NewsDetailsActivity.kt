@@ -17,7 +17,7 @@ class NewsDetailsActivity() : WolmoActivity<NewsDetailsActivityBinding>() {
             intent.getIntExtra(ID, 0),
             intent.getStringExtra(COMMENTER),
             intent.getStringExtra(COMMENT),
-            deltaTime(intent.getStringExtra(UPDATED_AT)),
+            deltaTime(intent.getStringExtra(CREATED_AT)),
             intent.getBooleanExtra(LIKES, false)
         ))
     }
@@ -37,14 +37,16 @@ class NewsDetailsActivity() : WolmoActivity<NewsDetailsActivityBinding>() {
         private const val UPDATED_AT = "updated_at"
         private const val LIKES = "likes"
         private const val USER_ID = "user_id"
+        private const val CREATED_AT = "created_At"
 
-        fun start(context: Context, dataSet: NewFromPage, userId: Int) {
+        fun start(context: Context, dataSet: NewFromPage, userId: Int, position: Int) {
             with(Intent(context, NewsDetailsActivity::class.java)) {
                 with(dataSet) {
                     putExtra(ID, id)
                     putExtra(COMMENTER, commenter)
                     putExtra(COMMENT, comment)
                     putExtra(AVATAR, avatar)
+                    putExtra(CREATED_AT, created_at)
                     putExtra(UPDATED_AT, updated_at)
                     putExtra(LIKES, userId in likes)
                     putExtra(USER_ID, userId)

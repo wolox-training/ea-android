@@ -23,13 +23,6 @@ class NewsDetailsPresenter @Inject constructor(private val newsRepository: NewsR
         }
     }
 
-    private fun formatData(newFromDetails: NewFromDetails) {
-        with(newFromDetails) {
-            val isLiked = userSession.id in likes
-            view?.updateData(commenter, comment, isLiked)
-        }
-    }
-
     fun onLikeButtonClicked(id: Int) {
         if (!loading) {
             view?.toggleLikeButton(loading)
@@ -37,12 +30,19 @@ class NewsDetailsPresenter @Inject constructor(private val newsRepository: NewsR
             launch {
                 networkRequest(newsRepository.putLike(id)) {
                     onResponseSuccessful { }
-                    onResponseFailed { _, _ -> }
-                    onCallFailure { }
+                    onResponseFailed { _, _ -> view?.onLikeUpdateFailed() }
+                    onCallFailure { view?.onCallFailed() }
                 }
                 view?.toggleLikeButton(loading)
                 loading = false
             }
+        }
+    }
+
+    private fun formatData(newFromDetails: NewFromDetails) {
+        with(newFromDetails) {
+            val isLiked = userSession.id in likes
+            view?.updateData(commenter, comment, isLiked)
         }
     }
 }
