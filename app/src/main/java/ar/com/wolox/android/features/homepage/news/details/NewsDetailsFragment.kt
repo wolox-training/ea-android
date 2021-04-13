@@ -1,22 +1,23 @@
 package ar.com.wolox.android.features.homepage.news.details
 
-import android.widget.Toast
+import android.os.Bundle
+import androidx.fragment.app.Fragment
 import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.NewsDetailsFragmentBinding
+import ar.com.wolox.android.extfunctions.deltaTime
+import ar.com.wolox.android.models.NewFromPage
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
+import ar.com.wolox.wolmo.core.util.ToastFactory
+import java.io.Serializable
 
-class NewsDetailsFragment(
-    private val newsId: Int,
-    private val commenter: String,
-    private val comment: String,
-    private val time: String,
-    private val isLikedByUser: Boolean
-) : WolmoFragment<NewsDetailsFragmentBinding, NewsDetailsPresenter>(), NewsDetailsView {
+class NewsDetailsFragment() : WolmoFragment<NewsDetailsFragmentBinding, NewsDetailsPresenter>(), NewsDetailsView {
+
+    private var newsId: Int = 0
 
     override fun layout() = R.layout.news_details_fragment
 
     override fun init() {
-        setUpInitialData(commenter, comment, time, isLikedByUser)
+        initializeData()
     }
 
     override fun setListeners() {
@@ -43,15 +44,24 @@ class NewsDetailsFragment(
     }
 
     override fun onCallFailed() {
-        Toast.makeText(requireContext(), getString(R.string.connection_call_error), Toast.LENGTH_SHORT)
+        ToastFactory(requireContext()).show(getString(R.string.connection_call_error))
     }
 
     override fun onResponseFailed() {
-        Toast.makeText(requireContext(), getString(R.string.connection_call_error), Toast.LENGTH_SHORT)
+        ToastFactory(requireContext()).show(getString(R.string.news_server_error))
     }
 
     override fun onLikeUpdateFailed() {
-        Toast.makeText(requireContext(), getString(R.string.like_update_failed), Toast.LENGTH_SHORT)
+        ToastFactory(requireContext()).show(getString(R.string.like_update_failed))
+    }
+
+    private fun initializeData() {
+        val newFromPage = arguments!!.getSerializable(DATA_SET) as NewFromPage
+        val userId = arguments!!.getInt(USER_ID)
+        newsId = newFromPage.id
+        with(newFromPage) {
+            setUpInitialData(commenter, comment, deltaTime(created_at), userId in likes)
+        }
     }
 
     private fun setUpInitialData(commenter: String, comment: String, time: String, isLikedByUser: Boolean) {
@@ -62,6 +72,15 @@ class NewsDetailsFragment(
     }
 
     companion object {
-        fun newInstance(id: Int, commenter: String, comment: String, time: String, isLikedByUser: Boolean) = NewsDetailsFragment(id, commenter, comment, time, isLikedByUser)
+        private const val DATA_SET = "data_Set"
+        private const val USER_ID = "user_id"
+
+        fun newInstance(dataSet: Serializable, userId: Int): Fragment = NewsDetailsFragment().apply {
+            val bundle = Bundle().apply {
+                putSerializable(DATA_SET, dataSet)
+                putInt(USER_ID, userId)
+            }
+            arguments = bundle
+        }
     }
 }

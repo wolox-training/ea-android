@@ -29,7 +29,6 @@ class NewsDetailsPresenter @Inject constructor(private val newsRepository: NewsR
             loading = true
             launch {
                 networkRequest(newsRepository.putLike(id)) {
-                    onResponseSuccessful { }
                     onResponseFailed { _, _ -> view?.onLikeUpdateFailed() }
                     onCallFailure { view?.onCallFailed() }
                 }

@@ -6,6 +6,7 @@ import android.widget.RadioButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ar.com.wolox.android.R
+import ar.com.wolox.android.extfunctions.deltaTime
 import ar.com.wolox.android.models.NewFromPage
 
 class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
