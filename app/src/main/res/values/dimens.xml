@@ -62,5 +62,6 @@
     <dimen name="wolox_time_description">77.78sp</dimen>
     <dimen name="wolox_location_description">68.89sp</dimen>
     <dimen name="wolox_example_text_size">36sp</dimen>
+    <dimen name="news_cover_dimen">350dp</dimen>
 
 </resources>

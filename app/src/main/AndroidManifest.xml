@@ -29,6 +29,10 @@
         <activity android:name=".features.auth.signup.SignupActivity"/>
         <activity android:name=".example.ui.example.ExampleActivity"/>
         <activity
+            android:name=".features.homepage.news.details.NewsDetailsActivity"
+            android:parentActivityName=".features.homepage.HomeActivity"
+        />
+        <activity
             android:name=".example.ui.viewpager.ViewPagerActivity"
             android:screenOrientation="portrait" />
     </application>

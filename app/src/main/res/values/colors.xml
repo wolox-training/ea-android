@@ -3,6 +3,7 @@
     <!-- Add your application custom colors here -->
     <color name="colorWoloxLightBlue">#3bafda</color>
     <color name="colorWoloxDarkGrey">#4d4d4d</color>
+    <color name="colorWoloxMediumGrey">#989898</color>
     <color name="colorWoloxLightGrey">#bbbcbe</color>
 
     <!-- Base application colors -->

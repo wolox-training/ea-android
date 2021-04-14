@@ -2,18 +2,21 @@ package ar.com.wolox.android.features.homepage.news
 
 import ar.com.wolox.android.example.network.builder.networkRequest
 import ar.com.wolox.android.example.network.repository.NewsRepository
+import ar.com.wolox.android.models.NewFromPage
 import ar.com.wolox.android.models.NewsPage
+import ar.com.wolox.android.utils.UserSession
 import ar.com.wolox.wolmo.core.presenter.CoroutineBasePresenter
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class NewsPresenter @Inject constructor(private val newsRepository: NewsRepository) : CoroutineBasePresenter<NewsView>() {
+class NewsPresenter @Inject constructor(private val newsRepository: NewsRepository, private val userSession: UserSession) : CoroutineBasePresenter<NewsView>() {
 
     private var nextPage: Int? = null
     private var totalPages: Int? = null
     private var loading: Boolean = true
 
     override fun onViewAttached() {
+        view?.setUpRecycler(userSession.id)
         requestPage()
     }
 
@@ -27,6 +30,14 @@ class NewsPresenter @Inject constructor(private val newsRepository: NewsReposito
             loading = true
             requestPage(nextPage!!)
         }
+    }
+
+    fun onItemClicked(newFromPage: NewFromPage, position: Int) {
+        view?.goToNewsDetails(newFromPage, userSession.id, position)
+    }
+
+    fun onResumedFragment() {
+        requestPage()
     }
 
     private fun requestPage(page: Int = 1) {

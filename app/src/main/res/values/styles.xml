@@ -12,4 +12,28 @@
         <item name="android:textSize">@dimen/font_small_more</item>
     </style>
 
+    <style name="TextAppearance.Commenter" parent="TextAppearance.MaterialComponents.Headline3">
+        <!-- Define your custom appearance here. -->
+        <item name="android:textSize">@dimen/font_huge</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.Comment" parent="TextAppearance.MaterialComponents.Headline3">
+        <!-- Define your custom appearance here. -->
+        <item name="android:textSize">@dimen/font_medium_extra</item>
+        <item name="android:textColor">@color/colorWoloxMediumGrey</item>
+    </style>
+
+    <style name="TextAppearance.Time" parent="TextAppearance.MaterialComponents.Headline3">
+        <!-- Define your custom appearance here. -->
+        <item name="android:textSize">@dimen/font_medium</item>
+        <item name="android:textColor">@color/colorWoloxMediumGrey</item>
+    </style>
+
+    <style name="TextAppearance.Post" parent="TextAppearance.MaterialComponents.Headline3">
+        <!-- Define your custom appearance here. -->
+        <item name="android:textSize">@dimen/font_huge</item>
+        <item name="android:textColor">@color/cardview_light_background</item>
+    </style>
+
 </resources>

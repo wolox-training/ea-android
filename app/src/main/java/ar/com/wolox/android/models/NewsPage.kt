@@ -1,13 +1,13 @@
 package ar.com.wolox.android.models
 
 data class NewsPage(
-    var page: List<News>,
-    var count: Int,
-    var total_pages: Int,
-    var total_count: Int,
-    var current_page: Int,
-    var previous_page: Int?,
-    var next_page: Int?,
-    var next_page_url: String?,
-    var previous_page_url: String?
+    val count: Int,
+    val current_page: Int,
+    val next_page: Int?,
+    val next_page_url: String?,
+    val page: List<NewFromPage>,
+    val previous_page: Int?,
+    val previous_page_url: String?,
+    val total_count: Int,
+    val total_pages: Int
 )

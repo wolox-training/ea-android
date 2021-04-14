@@ -16,13 +16,14 @@ import dagger.android.support.AndroidSupportInjectionModule
 import ar.com.wolox.android.features.auth.login.LoginModule
 import ar.com.wolox.android.features.root.RootModule
 import ar.com.wolox.android.features.auth.signup.SignupModule
+import ar.com.wolox.android.features.homepage.news.details.NewsDetailsModule
 
 @ApplicationScope
 @Component(
     dependencies = [NetworkingComponent::class],
     modules = [AndroidSupportInjectionModule::class, DefaultModule::class, ContextModule::class,
         ExampleModule::class, LoginModule::class, RootModule::class, SignupModule::class,
-        HomeModule::class, ViewPagerActivityModule::class]
+        HomeModule::class, NewsDetailsModule::class, ViewPagerActivityModule::class]
 )
 
 interface AppComponent : AndroidInjector<BootstrapApplication> {

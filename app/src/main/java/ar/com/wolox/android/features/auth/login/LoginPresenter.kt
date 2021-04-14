@@ -67,6 +67,14 @@ class LoginPresenter @Inject constructor(
 
     private fun onValidLogin(user: User) {
         userSession.isOngoingSession = true
+        with(user.data) {
+            userSession.let {
+                it.id = id
+                it.name = name
+                it.nickname = nickname
+                it.image = image
+            }
+        }
         view?.goToHome()
     }
 

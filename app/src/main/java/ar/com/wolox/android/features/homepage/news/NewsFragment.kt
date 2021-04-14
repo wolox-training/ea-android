@@ -4,7 +4,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import ar.com.wolox.android.R
 import ar.com.wolox.android.databinding.NewsFragmentBinding
-import ar.com.wolox.android.models.News
+import ar.com.wolox.android.features.homepage.news.details.NewsDetailsActivity
+import ar.com.wolox.android.models.NewFromPage
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import javax.inject.Inject
 
@@ -13,7 +14,6 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
     override fun layout() = R.layout.news_fragment
 
     override fun init() {
-        setUpRecycler()
     }
 
     override fun setListeners() {
@@ -24,7 +24,17 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
                     presenter.onLoadMoreRequested(lastVisibleItemPosition, (newsRecyclerView.adapter as RecyclerAdapter).itemCount)
                 }
             })
+            (newsRecyclerView.adapter as RecyclerAdapter).setItemsListener(object : OnItemClickListener() {
+                override fun onItemClicked(newFromPage: NewFromPage, position: Int) {
+                    presenter.onItemClicked(newFromPage, position)
+                }
+            })
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.onResumedFragment()
     }
 
     override fun stopRefreshing() {
@@ -33,7 +43,7 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
         }
     }
 
-    override fun updateNews(dataSet: List<News>) {
+    override fun updateNews(dataSet: List<NewFromPage>) {
         with(binding.newsRecyclerView) {
             (adapter as RecyclerAdapter).addNews(dataSet)
         }
@@ -53,10 +63,14 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsFragmentBinding, Ne
         Toast.makeText(requireContext(), getString(R.string.connection_call_error), Toast.LENGTH_SHORT).show()
     }
 
-    private fun setUpRecycler() {
+    override fun goToNewsDetails(newFromPage: NewFromPage, userId: Int, position: Int) {
+        NewsDetailsActivity.start(requireContext(), newFromPage, userId, position)
+    }
+
+    override fun setUpRecycler(userId: Int) {
         with(binding.newsRecyclerView) {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = RecyclerAdapter(requireContext())
+            adapter = RecyclerAdapter(requireContext(), userId)
         }
     }
 
